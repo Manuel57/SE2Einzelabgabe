@@ -23,11 +23,30 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number" />
+
         <Button
+            android:id="@+id/btnMatNr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/btnMatNr"/>
+            android:text="Send" />
+
+        <TextView
+            android:id="@+id/txtResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnCalculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click for Aufgabe 2" />
+
+        <TextView
+            android:id="@+id/txtCalculationResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
     </LinearLayout>
 
 
