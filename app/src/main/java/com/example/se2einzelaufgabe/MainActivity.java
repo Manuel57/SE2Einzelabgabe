@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnMatNr;
     private Button btnCalculate;
-    private TextView txtResponse;
     private TextView txtCalculationResult;
     private EditText txtMatNr;
 
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.btnMatNr = findViewById(R.id.btnMatNr);
         this.btnCalculate = findViewById(R.id.btnCalculate);
         this.txtCalculationResult = findViewById(R.id.txtCalculationResult);
-        this.txtResponse = findViewById(R.id.txtResponse);
         this.txtMatNr = findViewById(R.id.txtMatNr);
         this.btnMatNr.setOnClickListener(this);
         this.btnCalculate.setOnClickListener(this);
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                txtResponse.setText(response);
+                                txtCalculationResult.setText(response);
                             }
                         });
                     } catch (IOException e) {
