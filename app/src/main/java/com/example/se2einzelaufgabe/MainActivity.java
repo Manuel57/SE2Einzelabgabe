@@ -12,6 +12,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.txtResponse = findViewById(R.id.txtResponse);
         this.txtMatNr = findViewById(R.id.txtMatNr);
         this.btnMatNr.setOnClickListener(this);
+        this.btnCalculate.setOnClickListener(this);
     }
 
     @Override
@@ -40,18 +42,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     try {
-                        String in = txtMatNr.getText().toString();
-
                         Socket clientSocket = new Socket("se2-isys.aau.at", 53212);
                         DataOutputStream dos = new DataOutputStream((clientSocket.getOutputStream()));
 
                         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                        dos.writeBytes(in + '\n');
+                        dos.writeBytes(txtMatNr.getText().toString() + '\n');
 
                         final String response = inFromServer.readLine();
                         clientSocket.close();
-
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 txtResponse.setText(response);
                             }
                         });
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -68,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.btnCalculate) {
             int sum = 0;
             String number = this.txtMatNr.getText().toString();
+            for (char c : number.toCharArray()) {
+                sum += Character.getNumericValue(c);
+            }
+            this.txtCalculationResult.setText("The 'Quersumme' of the given number is " + Integer.toBinaryString(sum));
         }
     }
 }
